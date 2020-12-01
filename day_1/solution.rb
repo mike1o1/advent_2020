@@ -27,8 +27,8 @@ class Day1
     third = nil
 
     input.each do |entry|
-      input.each_with_index do |second_entry|
-        input.each_with_index do |third_entry|
+      input.each do |second_entry|
+        input.each do |third_entry|
           if entry + second_entry + third_entry == 2020
             first = entry
             second = second_entry
