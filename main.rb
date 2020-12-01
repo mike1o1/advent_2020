@@ -6,7 +6,7 @@ SOLVED_DAYS.each do |day|
   require_relative "day_#{day}/solution"
 end
 
-solution = nil
+answer = nil
 
 Benchmark.bm do |benchmark|
   SOLVED_DAYS.each do |day|
@@ -15,13 +15,14 @@ Benchmark.bm do |benchmark|
       solution_text = "Problem #{problem}."
       puts solution_text
 
-      klass = Object.const_get("Day#{day}")
+      input = File.read("day_#{day}/input.txt")
+      
+      solution = Object.const_get("Day#{day}").new(input)
       benchmark.report do
-        input = File.read("day_#{day}/input.txt")
-        solution = klass.send("problem_#{problem}", input)
+        answer = solution.send("problem_#{problem}")
       end
 
-      puts "Solution: #{solution}"
+      puts "Solution: #{answer}"
       puts
     end
   end

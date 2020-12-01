@@ -1,33 +1,34 @@
-module Day1
-  def self.problem_1(input)
-    entries = entries(input)
+class Day1
+  attr_accessor :input
+  
+  def initialize(input)
+    @input = read_entries(input)
+  end
+  
+  def problem_1
     first = nil
     second = nil
-
-    # iterate through each entry and sum the others until
-    # we get to 2020
-    entries.each do |entry|
-      entries.each do |second_entry|
+    
+    input.each do |entry|
+      input.each do |second_entry|
         if entry + second_entry == 2020
           first = entry
           second = second_entry
         end
       end
     end
-
+    
     first * second
   end
-
-  def self.problem_2(input)
-    entries = entries(input)
-
+  
+  def problem_2
     first = nil
     second = nil
     third = nil
 
-    entries.each do |entry|
-      entries.each_with_index do |second_entry|
-        entries.each_with_index do |third_entry|
+    input.each do |entry|
+      input.each_with_index do |second_entry|
+        input.each_with_index do |third_entry|
           if entry + second_entry + third_entry == 2020
             first = entry
             second = second_entry
@@ -40,7 +41,9 @@ module Day1
     first * second * third
   end
 
-  def self.entries(input)
+  private
+  
+  def read_entries(input)
     input.split("\n").map(&:to_i)
   end
 end
