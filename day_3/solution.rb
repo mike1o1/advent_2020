@@ -7,27 +7,7 @@ class Day3
   end
   
   def problem_1
-    x = 0
-    y = 0
-    tree_count = 0
-    
-    (input.length - 1).times do 
-      x += slope_right
-      y += slope_down
-
-      line = input[y]
-
-      # See if we've gone past the memory and wrap the x position
-      if x >= line.length
-        x = x - line.length
-      end
-      
-      if line[x] == "#"
-        tree_count += 1
-      end
-    end
-    
-    tree_count
+    traverse_slope(3, 1)
   end
   
   def slope_right
@@ -39,6 +19,34 @@ class Day3
   end
   
   def problem_2
+    total_trees = 1
+    [[1,1], [3,1], [5,1], [7,1], [1,2]].map do | right, down |
+      total_trees *= traverse_slope(right, down)
+    end
     
+    total_trees
+  end
+  
+  def traverse_slope(right, down)
+    x = 0
+    y = 0
+    tree_count = 0
+    
+    (input.length - 1).times do 
+      x += right
+      y += down
+      
+      line = input[y]
+      
+      next if line.nil?
+      
+      if x >= line.length
+        x = x - line.length
+      end
+      
+      tree_count += 1 if line[x] == "#"
+    end
+    
+    tree_count
   end
 end

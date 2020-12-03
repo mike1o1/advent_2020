@@ -7,13 +7,12 @@ class Day3Tests < Minitest::Test
     @solution = Day3.new(get_inputs)
   end
 
-  focus
   def test_day_3_solution_1
     assert_equal(7, @solution.problem_1)
   end
 
   def test_day_3_solution_2
-    # assert_equal(1, @solution.problem_2)
+    assert_equal(336, @solution.problem_2)
   end
 
   def get_inputs
