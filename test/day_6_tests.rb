@@ -6,9 +6,14 @@ class Day6Tests < Minitest::Test
     @solution = Day6.new(get_inputs)
   end
   
-  focus
   def test_day_6_solution_1
     assert_equal(11, @solution.problem_1)
+  end
+  
+  def test_day_6_solution_2
+    assert_equal(3, Day6.new("abc").problem_2)
+    
+    assert_equal(6, @solution.problem_2)
   end
 
   def get_inputs
